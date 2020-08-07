@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="google-signin-client_id" content="643998111596-9707gtsqa0sran4n51truoodioq4niu5.apps.googleusercontent.com">
+    <meta name="google-signin-cookiepolicy" content="single_host_origin">
+    <meta name="google-signin-scope" content="profile email"> -->
+
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../styles/todo_container.css">
+</head>
+<body>
+    <div>
+        <h4>User: {{ userRecord.displayName }}</h4>
+    </div>
+
+    <hr>
+
+    <form action="" id="form">
+        <label for="task">Add task</label>
+        <input type="text" id="taskText">
+        <button type="submit">Add task</button>
+    </form>
+
+    <hr>
+
+    <div>
+        <ol id="list"></ol>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="../scripts/firebase/init.js"></script>
+    <script src="../scripts/home.js"></script>
+</body>
+</html>
