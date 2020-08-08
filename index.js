@@ -138,12 +138,33 @@ app.get('/getTodoList', async (req, res) => {
             console.log('No such document!');
             // const docRef = db.collection('users').doc('aturing');
             await todoListRef.set({
-                task: 'test'
+                tasks: []
             });
             res.send('documento creado');
         } else {
             console.log('Document data:', doc.data());
             res.send(doc.data());
+        }
+    }
+});
+
+app.post('/addTask', async (req, res) => {
+    const uid = req.cookies.uid;
+    const task = req.body.task;
+    if (uid) {
+        const todoListRef = db.collection('users').doc(uid);
+        const doc = await todoListRef.get();
+        if (!doc.exists) {
+            res.send('No such document!');
+        } else {
+            await todoListRef.update({
+                // tasks: admin.firestore.FieldValue.arrayUnion(task)
+                tasks: admin.firestore.FieldValue.arrayUnion({
+                    name: task,
+                    date: admin.firestore.Timestamp.fromDate(new Date())
+                })
+            });
+            res.redirect('/getTodoList');
         }
     }
 });
