@@ -45,12 +45,13 @@
     </div> -->
 
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
+        <h5 class="my-0 mr-md-auto font-weight-normal">TODO app</h5>
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="#">Features</a>
             <a class="p-2 text-dark" href="#">Enterprise</a>
             <a class="p-2 text-dark" href="#">Support</a>
-            <a class="p-2 text-dark" href="#">Pricing</a>
+            <a href="">{{ userRecord.displayName }}</a>
+            <!-- <a class="p-2 text-dark" href="#">Pricing</a> -->
         </nav>
         <a class="btn btn-outline-primary" href="#">Sign up</a>
     </div>
@@ -68,7 +69,7 @@
 
         </div> -->
 
-        <div class="card mb-4 shadow-lg text-center">
+        <div class="card mb-4 shadow-lg ">
             <div class="card-header">
                 <!-- <h4 class="my-0 font-weight-normal">Free</h4> -->
                 <!-- <ul class="nav nav-tabs card-header-tabs justify-content-center font-weight-normal">
@@ -82,26 +83,91 @@
 
                 <ul class="nav nav-tabs card-header-tabs justify-content-center font-weight-normal" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                        <a class="nav-link active" id="tasks-tab" data-toggle="tab" href="#tasks" role="tab" aria-controls="tasks" aria-selected="true">Tasks</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                        <a class="nav-link" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar" aria-selected="false">Calendar</a>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <!-- <li class="nav-item" role="presentation">
                         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                    </li>
+                    </li> -->
                 </ul>
+
             </div>
 
-            <div class="card-body">
-                <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
+            <div class="card-body mx-3">
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="tasks" role="tabpanel" aria-labelledby="tasks-tab">
+                        <div>
+                            <form id="form">
+                                <div class="form-group row">
+                                    <label for="inputTask" class="col-sm-1 col-form-label">Task</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="inputTask">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-primary btn-block">Add task</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="">
+                                    <!-- <svg class="bi bi-chevron-right" width="32" height="32" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6.646 3.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L12.293 10 6.646 4.354a.5.5 0 010-.708z"/></svg> -->
+
+                                    <svg class="bi bi-chevron-down " width="24" height="24" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                    
+                                    <h4 class="d-inline-block py-0 my-1">Today</h4>
+                                </div>
+                                <span class="d-inline-block badge badge-primary badge-pill" id="badgeTasksCounter">0</span>
+                            </div>
+                            <ul class="list-group list-group-flush mt-2" id="list">
+                                <!-- <li class="list-group-item">Vestibulum at eros</li> -->
+
+                                <!-- <li class="list-group-item">
+                                    <div class="custom-control custom-checkbox mr-sm-2">
+                                        <input type="checkbox" class="custom-control-input" id="customControlAutosizing1">
+                                        <label class="custom-control-label" for="customControlAutosizing1">Dapibus ac facilisis</label>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="custom-control custom-checkbox mr-sm-2">
+                                        <input type="checkbox" class="custom-control-input" id="customControlAutosizing2">
+                                        <label class="custom-control-label" for="customControlAutosizing2">Dapibus ac facilisis</label>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="custom-control custom-checkbox mr-sm-2">
+                                        <input type="checkbox" class="custom-control-input" id="customControlAutosizing3">
+                                        <label class="custom-control-label" for="customControlAutosizing3">Dapibus ac facilisis</label>
+                                    </div>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="calendar" role="tabpanel" aria-labelledby="calendar-tab">
+                        // TODO
+                    </div>
+
+                    <!-- <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">chavales</div> -->
+                </div>
+
+                <!-- <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
                 <ul class="list-unstyled mt-3 mb-4">
                     <li>10 users included</li>
                     <li>2 GB of storage</li>
                     <li>Email support</li>
                     <li>Help center access</li>
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+                <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button> -->
             </div>
         </div>
         
@@ -146,6 +212,8 @@
       
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-    <!-- <script src="../scripts/home.js"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script src="../scripts/home.js"></script>
 </body>
 </html>

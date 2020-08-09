@@ -1,11 +1,31 @@
 var form = document.getElementById('form');
+var tasksCounter = 0;
+
+{/* <li class="list-group-item">
+    <div class="custom-control custom-checkbox mr-sm-2">
+        <input type="checkbox" class="custom-control-input" id="customControlAutosizing1">
+        <label class="custom-control-label" for="customControlAutosizing1">Dapibus ac facilisis</label>
+    </div>
+</li> */}
 
 function appendTasksToDOM(result) {
     let html = '';
     result.tasks.forEach(task => {
-        html += '<li>' + task.name + '</li>'
+        html += `<li class="list-group-item">
+                    <div class="custom-control custom-checkbox mr-sm-2">
+                        <input type="checkbox" class="custom-control-input" id="customControl${++tasksCounter}">
+                        <label class="custom-control-label" for="customControl${tasksCounter}">${task.name}</label>
+                    </div>
+                </li>`
+
+        // html += '<li class="list-group-item">' + 
+        //             '<div class="custom-control custom-checkbox mr-sm-2">' + 
+
+        //             '</div>' +
+        //         '</li>'
     });
     document.getElementById('list').innerHTML = html;
+    document.getElementById('badgeTasksCounter').innerText = tasksCounter;
 }
 
 function loadTodoList() {
@@ -44,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 form.addEventListener('submit', (e) => {
     e.preventDefault(); // do not reload page
-    var taskText = document.getElementById('taskText').value;
+    let taskText = document.getElementById('inputTask').value;
     // if (taskText === undefined || taskText === "") e.preventDefault();
 
     if (taskText === '') return;
