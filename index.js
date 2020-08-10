@@ -83,6 +83,11 @@ app.get('/login', (req, res) => {
     });
 });
 
+app.get('/sessionLogout', (req, res) => {
+    res.clearCookie('session');
+    res.redirect('/login');
+});
+
 app.post('/authenticate', (req, res) => {
     // Get the ID token passed and the CSRF token.
     const idToken = req.body.idToken.toString();
@@ -151,6 +156,7 @@ app.get('/getTodoList', async (req, res) => {
 app.post('/addTask', async (req, res) => {
     const uid = req.cookies.uid;
     const task = req.body.task;
+    const date = req.body.date;
     if (uid) {
         const todoListRef = db.collection('users').doc(uid);
         const doc = await todoListRef.get();
@@ -161,7 +167,10 @@ app.post('/addTask', async (req, res) => {
                 // tasks: admin.firestore.FieldValue.arrayUnion(task)
                 tasks: admin.firestore.FieldValue.arrayUnion({
                     name: task,
-                    date: admin.firestore.Timestamp.fromDate(new Date())
+                    // date: admin.firestore.Timestamp.fromDate(new Date())
+                    date: admin.firestore.Timestamp.fromDate(new Date(date))
+                    // date: admin.firestore.Timestamp.now()
+                    // date: admin.firestore.Timestamp.fromMillis()
                 })
             });
             res.redirect('/getTodoList');

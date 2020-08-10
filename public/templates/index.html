@@ -7,7 +7,7 @@
     <meta name="google-signin-cookiepolicy" content="single_host_origin">
     <meta name="google-signin-scope" content="profile email"> -->
 
-    <title>Document</title>
+    <title>Home</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/index.css">
@@ -44,17 +44,90 @@
         <ol id="list"></ol>
     </div> -->
 
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm mb-3">
+        <a class="navbar-brand text-dark" href="#">Navbar</a>
+        <button class="navbar-toggler border" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto justify-content-end">
+                <li class="nav-item active">
+                    <a class="nav-link text-dark" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">Link</a>
+                </li>
+                <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li> -->
+            </ul>
+
+            <!-- <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown link
+                </a>
+              
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="#">Setting</a>
+                  <a class="dropdown-item" href="#">Logout</a>
+                </div>
+              </div> -->
+
+            <!-- {{ userRecord.photoURL }} -->
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="{{ userRecord.photoURL }}" alt="Profile pic" width="24" height="24" class="mr-2 rounded-circle">
+                    {{ userRecord.displayName }}
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <!-- <button class="dropdown-item" type="button">Profile</button>
+                    <button class="dropdown-item" type="button">Settings</button>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" type="button">Logout</button> -->
+
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="#">Setting</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/sessionLogout">Logout</a>
+                </div>
+            </div>
+              
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+        </div>
+    </nav>
+
+    <!-- start last functional navbar -->
+
+    <!-- <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
         <h5 class="my-0 mr-md-auto font-weight-normal">TODO app</h5>
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="#">Features</a>
             <a class="p-2 text-dark" href="#">Enterprise</a>
             <a class="p-2 text-dark" href="#">Support</a>
             <a href="">{{ userRecord.displayName }}</a>
-            <!-- <a class="p-2 text-dark" href="#">Pricing</a> -->
+            <a class="p-2 text-dark" href="#">Pricing</a>
         </nav>
-        <a class="btn btn-outline-primary" href="#">Sign up</a>
-    </div>
+        <a class="btn btn-outline-primary" href="#">{{ userRecord.displayName }}</a>
+    </div> -->
+
+    <!-- end of navbar -->
+
+
       
     <!-- <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h1 class="display-4">Pricing</h1>
@@ -101,15 +174,32 @@
                     <div class="tab-pane fade show active" id="tasks" role="tabpanel" aria-labelledby="tasks-tab">
                         <div>
                             <form id="form">
-                                <div class="form-group row">
-                                    <label for="inputTask" class="col-sm-1 col-form-label">Task</label>
-                                    <div class="col-sm-9">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputTask">New task</label>
+                                        <input type="text" class="form-control" id="inputTask" required>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputTaskDate">Date</label>
+                                        <input type="date" class="form-control" id="inputTaskDate" required>
+                                    </div>
+                                    <div class="form-group col-md-2 d-flex align-items-end justify-content-end">
+                                        <button class="btn btn-primary btn-block">Add task</button>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="form-group row">
+                                    <label for="inputTask" class="col-sm-1 col-form-label">New task</label>
+                                    <div class="col-sm-6">
                                         <input type="text" class="form-control" id="inputTask">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="date" class="form-control" id="inputTaskDate">
                                     </div>
                                     <div class="col-sm-2">
                                         <button class="btn btn-primary btn-block">Add task</button>
                                     </div>
-                                </div>
+                                </div> -->
                             </form>
                         </div>
 
@@ -128,7 +218,7 @@
                                 </div>
                                 <span class="d-inline-block badge badge-primary badge-pill" id="badgeTasksCounter">0</span>
                             </div>
-                            <ul class="list-group list-group-flush mt-2" id="list">
+                            <ul class="list-group list-group-flush mt-2" id="todayList">
                                 <!-- <li class="list-group-item">Vestibulum at eros</li> -->
 
                                 <!-- <li class="list-group-item">
@@ -150,6 +240,8 @@
                                     </div>
                                 </li> -->
                             </ul>
+
+                            <ul class="list-group list-group-flush mt-2" id="upcomingList" hidden></ul>
                         </div>
                     </div>
 
@@ -210,8 +302,12 @@
         </footer>
     </div>
       
+    <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-firestore.js"></script>
+    <script src="../scripts/firebase/init-firebase.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
     <script src="../scripts/home.js"></script>

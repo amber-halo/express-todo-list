@@ -13,8 +13,8 @@ TODO list app built with Express and Bootstrap.
 - [ ] Add GitHub, Facebook, and other authentication options.
 - [ ] Fix navbar.
 - [ ] Add task categories.
-- [ ] Add logout option.
-- [ ] Add profile picture to navbar.
+- [X] Add logout option.
+- [X] Add profile picture to navbar.
 - [ ] Show Toast when user adds or modifies a task.
 
 #### Description
