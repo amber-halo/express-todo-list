@@ -207,3 +207,7 @@ app.post('/addTask', async (req, res) => {
 app.listen(port, () => {
     console.log(`Listening at port ${port}`);
 });
+
+module.exports = {
+    app
+}
