@@ -57,9 +57,9 @@
                 <li class="nav-item active">
                     <a class="nav-link text-dark" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link text-dark" href="#">Link</a>
-                </li>
+                </li> -->
                 <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Dropdown
@@ -139,7 +139,6 @@
         <!-- <div class="card-deck mb-3 text-center">
             
             
-
         </div> -->
 
         <div class="card mb-4 shadow-lg ">
@@ -216,18 +215,26 @@
                                     
                                     <h4 class="d-inline-block py-0 my-1">Today</h4>
                                 </div>
-                                <span class="d-inline-block badge badge-primary badge-pill" id="badgeTasksCounter">0</span>
+                                <span class="d-inline-block badge badge-primary badge-pill mr-md-3 mr-lg-3 mr-xl-3 mr-sm-0" id="badgeTasksCounter">0</span>
                             </div>
                             <ul class="list-group list-group-flush mt-2" id="todayList">
                                 <!-- <li class="list-group-item">Vestibulum at eros</li> -->
 
-                                <!-- <li class="list-group-item">
-                                    <div class="custom-control custom-checkbox mr-sm-2">
-                                        <input type="checkbox" class="custom-control-input" id="customControlAutosizing1">
-                                        <label class="custom-control-label" for="customControlAutosizing1">Dapibus ac facilisis</label>
+                                <li class="list-group-item pr-0">
+                                    <div class="custom-control custom-checkbox mr-sm-2 d-flex justify-content-between">
+                                        <div>
+                                            <input type="checkbox" class="custom-control-input" id="customControlAutosizing1">
+                                            <label class="custom-control-label mt-2" for="customControlAutosizing1"></label>
+                                            <input type="text" class="custom-task-input">
+                                            <!-- <input type="text" placeholder="test" class="form-control"> -->
+                                            
+                                            
+                                        </div>
+                                        
+                                        <p class="text-muted m-0">Today</p>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
+                                <!-- <li class="list-group-item">
                                     <div class="custom-control custom-checkbox mr-sm-2">
                                         <input type="checkbox" class="custom-control-input" id="customControlAutosizing2">
                                         <label class="custom-control-label" for="customControlAutosizing2">Dapibus ac facilisis</label>

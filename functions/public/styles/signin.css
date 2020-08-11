@@ -47,3 +47,20 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+.divider {
+    border-top: 1px solid #d9dadc;
+    display: block;
+    line-height: 1px;
+    margin: 15px 0;
+    position: relative;
+    text-align: center;
+}
+
+.divider .divider-title {
+    background: #f5f5f5;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 0 20px;
+    text-transform: uppercase;
+}

@@ -1,12 +1,13 @@
 const express = require('express');
-const helmet = require('helmet');
-const path = require('path');
 require('dotenv').config();
 const cors = require('cors');
+const helmet = require('helmet');
+const nunjucks = require('nunjucks');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const nunjucks = require('nunjucks');
+const path = require('path');
+const functions = require('firebase-functions');
 
 const session = require(path.join(__dirname, 'src/session'));
 const utils = require(path.join(__dirname, 'src/utils'));
@@ -14,22 +15,28 @@ const utils = require(path.join(__dirname, 'src/utils'));
 const app = express();
 const port = process.env.PORT || 5000;
 
+// const todoApp = functions.https.onRequest(app);
+
+// module.exports = {
+//     todoApp
+// }
+
+var admin = require('firebase-admin');
+var user;
+
 nunjucks.configure('public/templates', {
     autoescape: true,
     express: app
 });
 
-var admin = require('firebase-admin');
-var user;
-
-app.use(helmet());
 app.use(cors());
+app.use(helmet());
 app.use(morgan('common'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static('public'));
 
-let serviceAccount = require(path.join(__dirname, 'firebase/todo-app-5160d-firebase-adminsdk-jsx5p-08da4eb532.json'));
+let serviceAccount = require(path.join(__dirname, 'firebase/todo-app-5160d-firebase-adminsdk-jsx5p-5c1e8b43b1.json'));
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: 'https://todo-app-5160d.firebaseio.com',
@@ -41,12 +48,15 @@ admin.initializeApp({
 const db = admin.firestore();
 
 app.get('/', (req, res) => {
+    // res.render('login.html');
     utils.getSessionCookie(admin, req, () => {
         // On success
         res.redirect('/home');
+        res.send('a');
     }, () => {
         // On error
         res.redirect('/login');
+        // res.send('b');
     });
 });
 
@@ -59,7 +69,7 @@ app.get('/home', (req, res) => {
         .then(function(userRecord) {
             // See the UserRecord reference doc for the contents of userRecord.
             // console.log('Successfully fetched user data:', userRecord.toJSON());
-            console.log('Success')
+            // console.log('Success')
             res.render('index.html', { userRecord: userRecord });
         })
         .catch(function(error) {
@@ -74,12 +84,13 @@ app.get('/home', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
+    // res.render('login.html');
     utils.getSessionCookie(admin, req, () => {
         // On success
         res.redirect('/home');
     }, () => {
         // On error
-        res.sendFile(path.join(__dirname, 'public/templates/login.html'));
+        res.render('login.html');
     });
 });
 
@@ -96,21 +107,6 @@ app.post('/authenticate', (req, res) => {
 
     // idToken comes from the client app
     session.verifyIdToken(admin, idToken);
-    // admin.auth().verifyIdToken(idToken)
-    // .then((decodedToken) => {
-    //     let uid = decodedToken.uid;
-    //     console.log(uid);
-    // }).catch((error) => {
-    //     // Handle error
-    //     console.log(error);
-    // });
-
-    // const csrfToken = req.body.csrfToken.toString();
-    // // Guard against CSRF attacks.
-    // if (csrfToken !== req.cookies.csrfToken) {
-    //     res.status(401).send('UNAUTHORIZED REQUEST!');
-    //     return;
-    // }
 
     // Set session expiration to 5 days.
     const expiresIn = 60 * 60 * 24 * 5 * 1000;
@@ -119,19 +115,6 @@ app.post('/authenticate', (req, res) => {
     // To only allow session cookie setting on recent sign-in, auth_time in ID token
     // can be checked to ensure user was recently signed in before creating a session cookie.
     session.createSessionCookie(admin, idToken, user, expiresIn, res);
-
-    // admin.auth().createSessionCookie(idToken, { expiresIn })
-    // .then((sessionCookie) => {
-    //     // Set cookie policy for session cookie.
-    //     const options = { maxAge: expiresIn, httpOnly: true, secure: true };
-    //     res.cookie('session', sessionCookie, options);
-    //     // res.redirect('/home');
-    //     res.end(JSON.stringify({ status: 'success' }));
-    // }, error => {
-    //     console.log(error);
-    //     // res.status(401).send('UNAUTHORIZED REQUEST!');
-    //     res.send('ERROR');
-    // });
 });
 
 app.get('/getTodoList', async (req, res) => {
@@ -167,42 +150,13 @@ app.post('/addTask', async (req, res) => {
                 // tasks: admin.firestore.FieldValue.arrayUnion(task)
                 tasks: admin.firestore.FieldValue.arrayUnion({
                     name: task,
-                    // date: admin.firestore.Timestamp.fromDate(new Date())
                     date: admin.firestore.Timestamp.fromDate(new Date(date))
-                    // date: admin.firestore.Timestamp.now()
-                    // date: admin.firestore.Timestamp.fromMillis()
                 })
             });
             res.redirect('/getTodoList');
         }
     }
 });
-
-// async function addData() {
-//     const docRef = db.collection('users').doc('aturing');
-//     await docRef.set({
-//         first: 'Alan',
-//         last: 'Turing',
-//         born: 1940
-//     });
-// }
-
-// async function getData() {
-//     const snapshot = await db.collection('users').get();
-//     snapshot.forEach((doc) => {
-//         console.log(doc.id, '=>', doc.data());
-//     });
-// }
-
-// app.get('/addData', (req, res) => {
-//     addData();
-//     res.send('exito');
-// });
-
-// app.get('/getData', (req, res) => {
-//     getData();
-//     res.send('mas exito');
-// });
 
 app.listen(port, () => {
     console.log(`Listening at port ${port}`);

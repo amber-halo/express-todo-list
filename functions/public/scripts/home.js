@@ -2,9 +2,13 @@ var form = document.getElementById('form');
 var todayTasksCounter = 0;
 
 {/* <li class="list-group-item">
-    <div class="custom-control custom-checkbox mr-sm-2">
-        <input type="checkbox" class="custom-control-input" id="customControlAutosizing1">
-        <label class="custom-control-label" for="customControlAutosizing1">Dapibus ac facilisis</label>
+    <div class="custom-control custom-checkbox mr-sm-2 d-flex justify-content-between">
+        <div>
+            <input type="checkbox" class="custom-control-input" id="customControlAutosizing1">
+            <label class="custom-control-label" for="customControlAutosizing1">Dapibus ac facilisis</label>
+        </div>
+        
+        <p class="text-muted m-0"></p>
     </div>
 </li> */}
 
@@ -16,10 +20,14 @@ function getTodayList(result) {
         let taskDate = new firebase.firestore.Timestamp(task.date._seconds, task.date._nanoseconds).toDate().toDateString();
         let curDate = new Date().toDateString();
         if (taskDate === curDate) {
-            html += `<li class="list-group-item">
-                        <div class="custom-control custom-checkbox mr-sm-2">
-                            <input type="checkbox" class="custom-control-input" id="customControl${++todayTasksCounter}">
-                            <label class="custom-control-label" for="customControl${todayTasksCounter}">${task.name}</label>
+            html += `<li class="list-group-item pr-0">
+                        <div class="custom-control custom-checkbox mr-sm-2 d-flex justify-content-between">
+                            <div>
+                                <input type="checkbox" class="custom-control-input" id="customControl${++todayTasksCounter}">
+                                <label class="custom-control-label mt-2" for="customControl${todayTasksCounter}"></label>
+                                <input type="text" value="${task.name}" class="custom-task-input">
+                            </div>
+                            <p class="text-muted m-0">Today</p>
                         </div>
                     </li>`
         }
