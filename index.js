@@ -211,10 +211,11 @@ app.post('/addTask', async (req, res) => {
 //     res.send('mas exito');
 // });
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/test.html'));
-    // res.render('test.html');
-});
+// app.get('/', (req, res) => {
+//     // 
+//     res.sendFile(path.join(__dirname, 'public/test.html'));
+//     // res.render('test.html');
+// });
 
 app.listen(port, () => {
     console.log(`Listening at port ${port}`);
