@@ -46,7 +46,7 @@ admin.initializeApp({
     }
 });
 
-// const db = admin.firestore();
+const db = admin.firestore();
 
 app.get('/', (req, res) => {
     // console.log('------- credentials------');
@@ -59,14 +59,15 @@ app.get('/', (req, res) => {
     // console.log(`type of credentials = ${typeof serviceAccount}`);
     // console.log(`type of credentials = ${typeof jsonServiceAccount}`);
     // console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS);
-    res.render('login.html');
-    // utils.getSessionCookie(admin, req, () => {
-    //     // On success
-    //     res.redirect('/home');
-    // }, () => {
-    //     // On error
-    //     res.redirect('/login');
-    // });
+    // res.render('login.html');
+
+    utils.getSessionCookie(admin, req, () => {
+        // On success
+        res.redirect('/home');
+    }, () => {
+        // On error
+        res.redirect('/login');
+    });
 });
 
 app.get('/home', (req, res) => {
