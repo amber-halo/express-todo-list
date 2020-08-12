@@ -1,2 +1,6 @@
-api/node_modules
-api/firebase
+/node_modules
+npm-debug.log
+.DS_Store
+/*.en
+/firebase
+.env

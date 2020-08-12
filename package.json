@@ -4,7 +4,7 @@
   "description": "TODO list app built with Express and Bootstrap.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node .",
     "dev": "nodemon index.js -e js,jsx,json,html,css"
   },
   "repository": {

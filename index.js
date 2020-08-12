@@ -14,7 +14,12 @@ const utils = require(path.join(__dirname, 'src/utils'));
 const app = express();
 const port = process.env.PORT || 5000;
 
-nunjucks.configure('public/templates', {
+// nunjucks.configure('public/templates', {
+//     autoescape: true,
+//     express: app
+// });
+
+nunjucks.configure('views', {
     autoescape: true,
     express: app
 });
@@ -29,10 +34,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static('public'));
 
-// let serviceAccount = require(path.join(__dirname, 'firebase/todo-app-5160d-firebase-adminsdk-jsx5p-5c1e8b43b1.json'));
+let serviceAccount = require(path.join(__dirname, 'firebase/todo-app-5160d-firebase-adminsdk-jsx5p-5c1e8b43b1.json'));
 admin.initializeApp({
-    // credential: admin.credential.cert(serviceAccount),
-    credential: admin.credential.applicationDefault(),
+    credential: admin.credential.cert(serviceAccount),
+    // credential: admin.credential.applicationDefault(),
     databaseURL: 'https://todo-app-5160d.firebaseio.com',
     databaseAuthVariableOverride: {
         uid: 'my-service-worker'
@@ -80,7 +85,8 @@ app.get('/login', (req, res) => {
         res.redirect('/home');
     }, () => {
         // On error
-        res.sendFile(path.join(__dirname, 'public/templates/login.html'));
+        // res.sendFile(path.join(__dirname, 'public/templates/login.html'));
+        res.render('login.html');
     });
 });
 
@@ -205,10 +211,43 @@ app.post('/addTask', async (req, res) => {
 //     res.send('mas exito');
 // });
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/test.html'));
+    // res.render('test.html');
+});
+
 app.listen(port, () => {
     console.log(`Listening at port ${port}`);
 });
 
-module.exports = {
-    app
-}
+
+
+
+
+
+
+
+
+// const express = require('express');
+// const path = require('path');
+// const nunjucks = require('nunjucks');
+
+// const app = express();
+// const port = 5000;
+
+// nunjucks.configure('views', {
+//     autoescape: true,
+//     express: app
+// });
+
+// app.use(express.static('public'));
+
+// app.get('/', (req, res) => {
+//     // res.sendFile(path.join(__dirname, 'views/index.html'));
+//     // res.render(path.join(__dirname, 'views/index.html'));
+//     res.render('login.html');
+// });
+
+// app.listen(port, () => {
+//     console.log(`Listening at port ${port}`);
+// });
