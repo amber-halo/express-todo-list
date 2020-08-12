@@ -52,7 +52,12 @@ app.get('/', (req, res) => {
     console.log('------- credentials------');
     console.log(serviceAccount);
     console.log('------- end of credentials------');
+    console.log('------- credentials json ------');
+    let jsonServiceAccount = JSON.parse(serviceAccount);
+    console.log(jsonServiceAccount);
+    console.log('------- end of credentials json------');
     console.log(`type of credentials = ${typeof serviceAccount}`);
+    console.log(`type of credentials = ${typeof jsonServiceAccount}`);
     // console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS);
     res.render('login.html');
     // utils.getSessionCookie(admin, req, () => {
