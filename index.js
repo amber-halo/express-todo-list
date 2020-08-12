@@ -36,28 +36,28 @@ app.use(express.static('public'));
 
 // let serviceAccount = require(path.join(__dirname, 'firebase/todo-app-5160d-firebase-adminsdk-jsx5p-5c1e8b43b1.json'));
 let serviceAccount = process.env.GOOGLE_APPLICATION_CREDENTIALS;
-// admin.initializeApp({
-//     credential: admin.credential.cert(serviceAccount),
-//     // credential: admin.credential.applicationDefault(),
-//     // credential: admin.credential.cert(process.env.GOOGLE_APPLICATION_CREDENTIALS),
-//     databaseURL: 'https://todo-app-5160d.firebaseio.com',
-//     databaseAuthVariableOverride: {
-//         uid: 'my-service-worker'
-//     }
-// });
+let serviceAccountJson = JSON.parse(serviceAccount);
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccountJson),
+    // credential: admin.credential.applicationDefault(),
+    databaseURL: 'https://todo-app-5160d.firebaseio.com',
+    databaseAuthVariableOverride: {
+        uid: 'my-service-worker'
+    }
+});
 
 // const db = admin.firestore();
 
 app.get('/', (req, res) => {
-    console.log('------- credentials------');
-    console.log(serviceAccount);
-    console.log('------- end of credentials------');
-    console.log('------- credentials json ------');
-    let jsonServiceAccount = JSON.parse(serviceAccount);
-    console.log(jsonServiceAccount);
-    console.log('------- end of credentials json------');
-    console.log(`type of credentials = ${typeof serviceAccount}`);
-    console.log(`type of credentials = ${typeof jsonServiceAccount}`);
+    // console.log('------- credentials------');
+    // console.log(serviceAccount);
+    // console.log('------- end of credentials------');
+    // console.log('------- credentials json ------');
+    // let jsonServiceAccount = JSON.parse(serviceAccount);
+    // console.log(jsonServiceAccount);
+    // console.log('------- end of credentials json------');
+    // console.log(`type of credentials = ${typeof serviceAccount}`);
+    // console.log(`type of credentials = ${typeof jsonServiceAccount}`);
     // console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS);
     res.render('login.html');
     // utils.getSessionCookie(admin, req, () => {
