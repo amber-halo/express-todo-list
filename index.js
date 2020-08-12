@@ -24,7 +24,7 @@ nunjucks.configure('views', {
     express: app
 });
 
-// var admin = require('firebase-admin');
+var admin = require('firebase-admin');
 var user;
 
 app.use(helmet());
@@ -37,7 +37,8 @@ app.use(express.static('public'));
 // let serviceAccount = require(path.join(__dirname, 'firebase/todo-app-5160d-firebase-adminsdk-jsx5p-5c1e8b43b1.json'));
 // admin.initializeApp({
 //     // credential: admin.credential.cert(serviceAccount),
-//     credential: admin.credential.applicationDefault(),
+//     // credential: admin.credential.applicationDefault(),
+//     credential: admin.credential.ap,
 //     databaseURL: 'https://todo-app-5160d.firebaseio.com',
 //     databaseAuthVariableOverride: {
 //         uid: 'my-service-worker'
@@ -47,7 +48,8 @@ app.use(express.static('public'));
 // const db = admin.firestore();
 
 app.get('/', (req, res) => {
-    res.render('wea.html');
+    console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS);
+    res.render('login.html');
     // utils.getSessionCookie(admin, req, () => {
     //     // On success
     //     res.redirect('/home');
