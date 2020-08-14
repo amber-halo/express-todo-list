@@ -30,11 +30,11 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 // Dev credentials
-let serviceAccount = require(path.join(__dirname, 'firebase/todo-app-5160d-firebase-adminsdk-jsx5p-5c1e8b43b1.json'));
+// let serviceAccount = require(path.join(__dirname, 'firebase/todo-app-5160d-firebase-adminsdk-jsx5p-5c1e8b43b1.json'));
 
 // Production credentials
-// let serviceAccountFile = process.env.GOOGLE_APPLICATION_CREDENTIALS;
-// let serviceAccount = JSON.parse(serviceAccountFile);
+let serviceAccountFile = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+let serviceAccount = JSON.parse(serviceAccountFile);
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
