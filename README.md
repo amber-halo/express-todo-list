@@ -1,6 +1,10 @@
 # express-todo-list
 TODO list app built with Express and Bootstrap.
 
+# Link to website
+
+* [TODO list app](https://expresstodlist-rn.herokuapp.com/)
+
 ### TODO (ironic)
 - [X] Match users with a TODO list.
 - [ ] Check if user belongs to a work group.
@@ -11,7 +15,7 @@ TODO list app built with Express and Bootstrap.
 - [ ] Assign tasks to a group member.
 - [ ] Add calendar.
 - [ ] Add GitHub, Facebook, and other authentication options.
-- [ ] Fix navbar.
+- [X] Fix navbar.
 - [ ] Add task categories.
 - [X] Add logout option.
 - [X] Add profile picture to navbar.
