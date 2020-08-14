@@ -1,15 +1,15 @@
 var form = document.getElementById('form');
 var todayTasksCounter = 0;
 
-{/* <li class="list-group-item">
-    <div class="custom-control custom-checkbox mr-sm-2 d-flex justify-content-between">
-        <div>
-            <input type="checkbox" class="custom-control-input" id="customControlAutosizing1">
-            <label class="custom-control-label" for="customControlAutosizing1">Dapibus ac facilisis</label>
+{/* <li class="list-group-item pr-0 d-flex justify-content-between">
+        <div class="custom-control custom-checkbox mr-sm-2">
+            <div>
+                <input type="checkbox" class="custom-control-input" id="customControlAutosizing1">
+                <label class="custom-control-label mt-2" for="customControlAutosizing1"></label>
+            </div>
         </div>
-        
-        <p class="text-muted m-0"></p>
-    </div>
+        <input type="text" class="form-control mr-3">
+        <p class="text-muted m-1">Today</p>
 </li> */}
 
 function getTodayList(result) {
@@ -20,15 +20,15 @@ function getTodayList(result) {
         let taskDate = new firebase.firestore.Timestamp(task.date._seconds, task.date._nanoseconds).toDate().toDateString();
         let curDate = new Date().toDateString();
         if (taskDate === curDate) {
-            html += `<li class="list-group-item pr-0">
-                        <div class="custom-control custom-checkbox mr-sm-2 d-flex justify-content-between">
+            html += `<li class="list-group-item pr-0 d-flex justify-content-between">
+                        <div class="custom-control custom-checkbox mr-sm-2">
                             <div>
                                 <input type="checkbox" class="custom-control-input" id="customControl${++todayTasksCounter}">
                                 <label class="custom-control-label mt-2" for="customControl${todayTasksCounter}"></label>
-                                <input type="text" value="${task.name}" class="custom-task-input">
                             </div>
-                            <p class="text-muted m-0">Today</p>
                         </div>
+                        <input type="text" value="${task.name}" class="custom-task-input mr-3">
+                        <p class="text-muted m-1">Today</p>
                     </li>`
         }
     });
@@ -36,20 +36,6 @@ function getTodayList(result) {
 }
 
 function appendTasksToDOM(result) {
-    // let html = '';
-    // result.tasks.forEach(task => {
-    //     let taskDate = new firebase.firestore.Timestamp(task.date._seconds, task.date._nanoseconds).toDate().toDateString();
-    //     let curDate = new Date().toDateString();
-    //     console.log('taskDate = ' + taskDate);
-    //     console.log('curDate = ' + curDate);
-    //     if (taskDate === curDate) console.log('same dates');
-    //     html += `<li class="list-group-item">
-    //                 <div class="custom-control custom-checkbox mr-sm-2">
-    //                     <input type="checkbox" class="custom-control-input" id="customControl${++todayTasksCounter}">
-    //                     <label class="custom-control-label" for="customControl${todayTasksCounter}">${task.name}</label>
-    //                 </div>
-    //             </li>`
-    // });
     let html = getTodayList(result);
 
     document.getElementById('todayList').innerHTML = html;

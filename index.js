@@ -14,11 +14,6 @@ const utils = require(path.join(__dirname, 'src/utils'));
 const app = express();
 const port = process.env.PORT || 5000;
 
-// nunjucks.configure('public/templates', {
-//     autoescape: true,
-//     express: app
-// });
-
 nunjucks.configure('views', {
     autoescape: true,
     express: app
@@ -34,12 +29,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static('public'));
 
-// let serviceAccount = require(path.join(__dirname, 'firebase/todo-app-5160d-firebase-adminsdk-jsx5p-5c1e8b43b1.json'));
-let serviceAccount = process.env.GOOGLE_APPLICATION_CREDENTIALS;
-let serviceAccountJson = JSON.parse(serviceAccount);
+// Dev credentials
+let serviceAccount = require(path.join(__dirname, 'firebase/todo-app-5160d-firebase-adminsdk-jsx5p-5c1e8b43b1.json'));
+
+// Production credentials
+// let serviceAccountFile = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+// let serviceAccount = JSON.parse(serviceAccountFile);
+
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccountJson),
-    // credential: admin.credential.applicationDefault(),
+    credential: admin.credential.cert(serviceAccount),
     databaseURL: 'https://todo-app-5160d.firebaseio.com',
     databaseAuthVariableOverride: {
         uid: 'my-service-worker'
@@ -99,7 +97,6 @@ app.get('/login', (req, res) => {
         res.redirect('/home');
     }, () => {
         // On error
-        // res.sendFile(path.join(__dirname, 'public/templates/login.html'));
         res.render('login.html');
     });
 });
@@ -117,21 +114,6 @@ app.post('/authenticate', (req, res) => {
 
     // idToken comes from the client app
     session.verifyIdToken(admin, idToken);
-    // admin.auth().verifyIdToken(idToken)
-    // .then((decodedToken) => {
-    //     let uid = decodedToken.uid;
-    //     console.log(uid);
-    // }).catch((error) => {
-    //     // Handle error
-    //     console.log(error);
-    // });
-
-    // const csrfToken = req.body.csrfToken.toString();
-    // // Guard against CSRF attacks.
-    // if (csrfToken !== req.cookies.csrfToken) {
-    //     res.status(401).send('UNAUTHORIZED REQUEST!');
-    //     return;
-    // }
 
     // Set session expiration to 5 days.
     const expiresIn = 60 * 60 * 24 * 5 * 1000;
@@ -140,19 +122,6 @@ app.post('/authenticate', (req, res) => {
     // To only allow session cookie setting on recent sign-in, auth_time in ID token
     // can be checked to ensure user was recently signed in before creating a session cookie.
     session.createSessionCookie(admin, idToken, user, expiresIn, res);
-
-    // admin.auth().createSessionCookie(idToken, { expiresIn })
-    // .then((sessionCookie) => {
-    //     // Set cookie policy for session cookie.
-    //     const options = { maxAge: expiresIn, httpOnly: true, secure: true };
-    //     res.cookie('session', sessionCookie, options);
-    //     // res.redirect('/home');
-    //     res.end(JSON.stringify({ status: 'success' }));
-    // }, error => {
-    //     console.log(error);
-    //     // res.status(401).send('UNAUTHORIZED REQUEST!');
-    //     res.send('ERROR');
-    // });
 });
 
 app.get('/getTodoList', async (req, res) => {
@@ -185,13 +154,9 @@ app.post('/addTask', async (req, res) => {
             res.send('No such document!');
         } else {
             await todoListRef.update({
-                // tasks: admin.firestore.FieldValue.arrayUnion(task)
                 tasks: admin.firestore.FieldValue.arrayUnion({
                     name: task,
-                    // date: admin.firestore.Timestamp.fromDate(new Date())
                     date: admin.firestore.Timestamp.fromDate(new Date(date))
-                    // date: admin.firestore.Timestamp.now()
-                    // date: admin.firestore.Timestamp.fromMillis()
                 })
             });
             res.redirect('/getTodoList');
@@ -215,54 +180,6 @@ app.post('/addTask', async (req, res) => {
 //     });
 // }
 
-// app.get('/addData', (req, res) => {
-//     addData();
-//     res.send('exito');
-// });
-
-// app.get('/getData', (req, res) => {
-//     getData();
-//     res.send('mas exito');
-// });
-
-// app.get('/', (req, res) => {
-//     // 
-//     res.sendFile(path.join(__dirname, 'public/test.html'));
-//     // res.render('test.html');
-// });
-
 app.listen(port, () => {
     console.log(`Listening at port ${port}`);
 });
-
-
-
-
-
-
-
-
-
-// const express = require('express');
-// const path = require('path');
-// const nunjucks = require('nunjucks');
-
-// const app = express();
-// const port = 5000;
-
-// nunjucks.configure('views', {
-//     autoescape: true,
-//     express: app
-// });
-
-// app.use(express.static('public'));
-
-// app.get('/', (req, res) => {
-//     // res.sendFile(path.join(__dirname, 'views/index.html'));
-//     // res.render(path.join(__dirname, 'views/index.html'));
-//     res.render('login.html');
-// });
-
-// app.listen(port, () => {
-//     console.log(`Listening at port ${port}`);
-// });

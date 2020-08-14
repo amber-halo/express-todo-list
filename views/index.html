@@ -3,14 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <meta name="google-signin-client_id" content="643998111596-9707gtsqa0sran4n51truoodioq4niu5.apps.googleusercontent.com">
-    <meta name="google-signin-cookiepolicy" content="single_host_origin">
-    <meta name="google-signin-scope" content="profile email"> -->
 
     <title>Home</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="../styles/index.css"> -->
     <link rel="stylesheet" href="/styles/index.css">
 
     <style>
@@ -31,84 +27,30 @@
     </style>
 </head>
 <body>
-    <!-- <div>
-        <h4>User: {{ userRecord.displayName }}</h4>
-    </div>
-    <hr>
-    <form action="" id="form">
-        <label for="task">Add task</label>
-        <input type="text" id="taskText">
-        <button type="submit">Add task</button>
-    </form>
-    <hr>
-    <div>
-        <ol id="list"></ol>
-    </div> -->
-
-
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm mb-3">
-        <a class="navbar-brand text-dark" href="#">Navbar</a>
-        <button class="navbar-toggler border" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- <a class="navbar-brand text-dark" href="#">TODO list</a> -->
+        <!-- <button class="navbar-toggler border" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
+        </button> -->
+
+        <a class="navbar-brand text-dark" href="#">TODO list</a>
+        <!-- <button class="navbar-toggler border" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> -->
       
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto justify-content-end">
-                <li class="nav-item active">
-                    <a class="nav-link text-dark" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Link</a>
-                </li> -->
-                <!-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li> -->
-            </ul>
+        <div class="collapse navbar-collapse"></div>
 
-            <!-- <div class="dropdown">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown link
-                </a>
-              
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="#">Setting</a>
-                  <a class="dropdown-item" href="#">Logout</a>
-                </div>
-              </div> -->
-
-            <!-- {{ userRecord.photoURL }} -->
-            <div class="btn-group">
-                <button type="button" class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ userRecord.photoURL }}" alt="Profile pic" width="24" height="24" class="mr-2 rounded-circle">
-                    {{ userRecord.displayName }}
-                </button>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <!-- <button class="dropdown-item" type="button">Profile</button>
-                    <button class="dropdown-item" type="button">Settings</button>
-                    <div class="dropdown-divider"></div>
-                    <button class="dropdown-item" type="button">Logout</button> -->
-
-                    <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">Setting</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/sessionLogout">Logout</a>
-                </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="{{ userRecord.photoURL }}" alt="Profile pic" width="24" height="24" class="mr-2 rounded-circle">
+                {{ userRecord.displayName }}
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" href="#">Setting</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/sessionLogout">Logout</a>
             </div>
-              
-            <!-- <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form> -->
         </div>
     </nav>
 
@@ -127,34 +69,10 @@
     </div> -->
 
     <!-- end of navbar -->
-
-
-      
-    <!-- <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="display-4">Pricing</h1>
-        
-    </div> -->
       
     <div class="container pt-md-3">
-
-        <!-- <div class="card-deck mb-3 text-center">
-            
-            
-
-        </div> -->
-
         <div class="card mb-4 shadow-lg ">
             <div class="card-header">
-                <!-- <h4 class="my-0 font-weight-normal">Free</h4> -->
-                <!-- <ul class="nav nav-tabs card-header-tabs justify-content-center font-weight-normal">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Tasks</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Calendar</a>
-                    </li>
-                </ul> -->
-
                 <ul class="nav nav-tabs card-header-tabs justify-content-center font-weight-normal" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" id="tasks-tab" data-toggle="tab" href="#tasks" role="tab" aria-controls="tasks" aria-selected="true">Tasks</a>
@@ -188,19 +106,6 @@
                                         <button class="btn btn-primary btn-block">Add task</button>
                                     </div>
                                 </div>
-
-                                <!-- <div class="form-group row">
-                                    <label for="inputTask" class="col-sm-1 col-form-label">New task</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="inputTask">
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="date" class="form-control" id="inputTaskDate">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <button class="btn btn-primary btn-block">Add task</button>
-                                    </div>
-                                </div> -->
                             </form>
                         </div>
 
@@ -222,20 +127,37 @@
                             <ul class="list-group list-group-flush mt-2" id="todayList">
                                 <!-- <li class="list-group-item">Vestibulum at eros</li> -->
 
-                                <li class="list-group-item pr-0">
+                                <!-- <li class="list-group-item pr-0">
                                     <div class="custom-control custom-checkbox mr-sm-2 d-flex justify-content-between">
                                         <div>
                                             <input type="checkbox" class="custom-control-input" id="customControlAutosizing1">
                                             <label class="custom-control-label mt-2" for="customControlAutosizing1"></label>
                                             <input type="text" class="custom-task-input">
-                                            <!-- <input type="text" placeholder="test" class="form-control"> -->
-                                            
-                                            
                                         </div>
                                         
-                                        <p class="text-muted m-0"></p>
+                                        <p class="text-muted m-0">Today</p>
                                     </div>
-                                </li>
+                                </li> -->
+
+                                <!-- THE ONE I LIKED THE MOST -->
+
+                                <!-- <li class="list-group-item pr-0 d-flex justify-content-between">
+
+                                    <div class="custom-control custom-checkbox mr-sm-2">
+                                        <div>
+                                            <input type="checkbox" class="custom-control-input" id="customControlAutosizing1">
+                                            <label class="custom-control-label mt-2" for="customControlAutosizing1"></label>
+                                        </div>
+                                    </div>
+
+                                    <input type="text" class="custom-task-input mr-3" value="just some text to check size">
+                                    <p class="text-muted m-1">Today</p>
+
+                                </li> -->
+
+                                <!-- ENDS -->
+
+
                                 <!-- <li class="list-group-item">
                                     <div class="custom-control custom-checkbox mr-sm-2">
                                         <input type="checkbox" class="custom-control-input" id="customControlAutosizing2">
