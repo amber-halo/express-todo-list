@@ -47,18 +47,6 @@ admin.initializeApp({
 const db = admin.firestore();
 
 app.get('/', (req, res) => {
-    // console.log('------- credentials------');
-    // console.log(serviceAccount);
-    // console.log('------- end of credentials------');
-    // console.log('------- credentials json ------');
-    // let jsonServiceAccount = JSON.parse(serviceAccount);
-    // console.log(jsonServiceAccount);
-    // console.log('------- end of credentials json------');
-    // console.log(`type of credentials = ${typeof serviceAccount}`);
-    // console.log(`type of credentials = ${typeof jsonServiceAccount}`);
-    // console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS);
-    // res.render('login.html');
-
     utils.getSessionCookie(admin, req, () => {
         // On success
         res.redirect('/home');
@@ -77,7 +65,7 @@ app.get('/home', (req, res) => {
         .then(function(userRecord) {
             // See the UserRecord reference doc for the contents of userRecord.
             // console.log('Successfully fetched user data:', userRecord.toJSON());
-            console.log('Success')
+            // console.log('Success')
             res.render('index.html', { userRecord: userRecord });
         })
         .catch(function(error) {
@@ -137,7 +125,7 @@ app.get('/getTodoList', async (req, res) => {
             });
             res.send('documento creado');
         } else {
-            console.log('Document data:', doc.data());
+            // console.log('Document data:', doc.data());
             res.send(doc.data());
         }
     }
@@ -161,6 +149,28 @@ app.post('/addTask', async (req, res) => {
             });
             res.redirect('/getTodoList');
         }
+    }
+});
+
+app.post('/deleteExpiredTasks', async (req, res) => {
+    const uid = req.cookies.uid;
+    const expiredTasks = req.body.expiredTasks;
+    const todoListRef = db.collection('users').doc(uid);
+    const doc = await todoListRef.get();
+    if (!doc.exists) {
+        res.send('No such document!');
+    } else {
+        // console.log(expiredTasks);
+        expiredTasks.forEach(async task => {
+            await todoListRef.update({
+                tasks: admin.firestore.FieldValue.arrayRemove({
+                    name: task.name,
+                    date: new admin.firestore.Timestamp(Number(task.date._seconds), Number(task.date._nanoseconds))
+                })
+            });
+        });
+
+        res.send('tasks deleted successfully');
     }
 });
 

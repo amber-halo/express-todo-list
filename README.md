@@ -11,6 +11,7 @@ TODO list app built with Express and Bootstrap.
 - [X] Add tasks.
 - [ ] Modify tasks.
 - [ ] Remove tasks.
+- [X] Remove expired tasks.
 - [ ] Mark tasks as completed.
 - [ ] Assign tasks to a group member.
 - [ ] Add calendar.
